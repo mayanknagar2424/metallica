@@ -1,0 +1,30 @@
+<div class="container"> 
+    <h3 style="background-color:lightgray;padding:1px">Metallica App</h3> 
+  <div class="row">
+    <!-- <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"> -->      
+    <div class="col-md-12 col-md-offset-2 col-md-offset-2">        
+      <ul class="nav nav-tabs">
+        <li class="active" role="presentation"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+          <a style='padding: 10px;font-weight: bold;font-size: 15pt;' routerLink="/">TRADES</a>
+        </li>
+        <li role="presentation"
+            routerLinkActive="active">
+          <a style='padding: 10px;font-weight: bold;font-size: 15pt;' routerLink="transfers">TRANSFERS</a>
+        </li>
+        <li role="presentation"
+            routerLinkActive="active">
+          <a style='padding: 10px;font-weight: bold;font-size: 15pt;' [routerLink]="['transports']">TRANSPORTS</a>
+        </li>        
+      </ul> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">      
+      <router-outlet></router-outlet>
+    </div>
+  </div> 
+</div>
+
+

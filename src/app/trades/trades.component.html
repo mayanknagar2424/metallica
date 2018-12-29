@@ -1,0 +1,233 @@
+
+<div class="row" style="border: 1px solid grey">
+  
+    <div class="col-md-2">
+    <div class="row">
+        <div class=".bg-light">
+            <label for="ltdate">Trade Date</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class=".bg-light">
+           <input class="search" type="text" value={{tradeDate}} /> 
+            <label for="ltdate"> &nbsp;to &nbsp;</label>
+           <input class="search" type="text" id="ttdate" value={{tradeDate}} />
+        </div>
+    </div>    
+  </div>
+
+  <div class="col-md-2">
+      <div class="row">
+          <div class=".bg-light">
+              <label for="ltdate">Commodity</label>
+          </div>
+      </div>
+     
+      <select class="mdb-select md-form" style="border-left: 0;border-top: 0;border-right: 0;border-bottom: 1px lightgray #383838;">
+            <option value="" disabled selected></option>
+            <option value="1">AL</option>
+            <option value="2">ZN</option>
+            <option value="3">CU</option>
+            <option value="4">AU</option>            
+            <option value="5">AG</option>            
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <div class="row">
+            <div class=".bg-light">
+                <label for="ltdate">Side</label>
+            </div>
+        </div>
+        <div class="row">            
+            <div class="checkbox">
+                <label><input type="checkbox" value="">&nbsp;Buy&nbsp;</label>
+                <label><input type="checkbox" value=""> &nbsp;Sell</label>
+            </div>
+        </div>    
+    </div>
+
+    <div class="col-md-2">
+        <div class="row">
+            <div class=".bg-light">
+                <label for="cparty">Counterparty</label>
+            </div>
+        </div>
+        <select class="mdb-select md-form" style="border-left: 0;border-top: 0;border-right: 0;border-bottom: 1px lightgray #383838;">
+            <option value="" disabled selected></option>
+            <option value="1">Lorem</option>
+            <option value="2">Ipsum</option>
+            <option value="3">Dolor</option>
+            <option value="4">Amet</option>            
+        </select>
+    </div>
+
+    <div class="col-md-2">
+            <div class="row">
+                <div class=".bg-light">
+                    <label for="lct">Location</label>
+                </div>
+            </div>
+            <select class="mdb-select md-form" style="border-left: 0;border-top: 0;border-right: 0;border-bottom: 1px lightgray #383838;">
+                <option value="" disabled selected></option>
+                <option value="1">London</option>
+                <option value="2">New York</option>
+                <option value="3">Singapore</option>
+                <option value="4">Denver</option>            
+            </select>
+    </div>
+
+    <div class="col-md-2">   
+            <a href="#">CLEAR</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#">SEARCH</a>         
+    </div>
+
+</div>
+
+<br/>
+
+<div id="wrap" class="row" style="border: 1px solid grey;" >
+    <div class = "col-md-8" >        
+            <ag-grid-angular 
+            #agGrid
+            style="height: 380px;"   
+            id="myGrid"           
+            class="ag-theme-balham"
+            [enableFilter]="true" 
+            [rowData]="tradeDataForGrid" 
+            [columnDefs]="columnDefs"
+            [defaultColDef]="defaultColDef"
+            [rowSelection]="rowSelection"     
+            [gridOptions] = "gridOptions"
+            (selectionChanged)="onSelectionChanged($event)"           
+            
+            (rowClicked)='onRowClicked($event)'
+            (cellClicked)='onCellClicked($event)'
+             
+            >
+        </ag-grid-angular>  
+    </div>
+
+     <div class = "col-md-4">
+       <div class="row">          
+          <div class="col-md-12">
+            <div class ="bg-secondary">
+                <label for="tdate" >Trade ID: 2211334</label>   
+                <a id="del" href="javascript:void(0);" style="float: right;">
+                        <span class="glyphicon glyphicon-trash"></span>                       
+                </a>
+               
+                <a href="javascript:void(0);" (click)="setTradeInputReadOnlyOnOff()" style="float: right;">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        &nbsp; &nbsp; 
+                </a>
+            </div>
+          </div>               
+        </div>
+
+     
+       <div class="row">          
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <label for="tdate">Trade Date:</label>
+              </div>
+          </div>      
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <input class="trade" type="text" id="tdate" value={{tradeDate}} [readonly]="isReadOnlytrades" [(ngModel)] = "tradeDate" /> 
+              </div>  
+          </div>
+       </div>
+
+       <div class="row">          
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <label for="tdate">Commodity:</label>
+              </div>
+          </div>      
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <input class="trade" type="text" id="commodity" value={{commodity}} [readonly]="isReadOnlytrades" [(ngModel)] = "commodity" /> 
+              </div>  
+          </div>
+       </div>
+
+       <div class="row">          
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <label for="tdate">Side:</label>
+              </div>
+          </div>      
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <input class="trade" type="text" id="side" value={{side}} [readonly]="isReadOnlytrades" [(ngModel)] = "side" /> 
+              </div>  
+          </div>
+       </div>
+
+       <div class="row">          
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <label for="tdate">Counterparty:</label>
+              </div>
+          </div>      
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <input class="trade" type="text" id="counterParty" value={{counterParty}} [readonly]="isReadOnlytrades" [(ngModel)] = "counterParty"/> 
+              </div>  
+          </div>
+       </div>
+
+       <div class="row">          
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <label for="tdate">Price:</label>
+              </div>
+          </div>      
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <input class="trade" type="text" id="price" value={{price}} [readonly]="isReadOnlytrades" [(ngModel)] = "price"/> 
+              </div>  
+          </div>
+       </div>
+
+       <div class="row">          
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <label for="tdate">Quantity:</label>
+              </div>
+          </div>      
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <input class="trade" type="text" id="quantity" value={{quantity}} [readonly]="isReadOnlytrades" [(ngModel)] = "quantity"/> 
+              </div>  
+          </div>
+       </div>
+
+       <div class="row">          
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <label for="tdate">Location:</label>
+              </div>
+          </div>      
+          <div class="col-md-4">
+              <div class=".bg-light">
+                <input class="trade" type="text" id="location" value={{location}} [readonly]="isReadOnlytrades" [(ngModel)] = "location"/> 
+              </div>  
+          </div>
+       </div>
+       <div class="row" style="float: right;margin-top: 25px; margin-right: 1px;">
+            <button class="btn btn-default btn-lg" (click)="CancelTrades()" [disabled]="isCancelDisabled">Cancel</button>
+            &nbsp;&nbsp;&nbsp;
+            <button class="btn btn-default btn-lg" (click)="AddSaveNewTradeData()" [disabled]="isSaveDisabled">Save</button>
+       </div>
+    </div>
+     
+</div>
+
+<div class="col-md-8">
+    <div class="row" style="float: right;">        
+           <button class="btn btn-default btn-lg" style="border-radius: 50%;" (click)="AddNewTrades()">+</button>
+    </div>
+</div>
